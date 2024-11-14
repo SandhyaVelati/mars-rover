@@ -9,7 +9,7 @@ public class PositionParser {
     public Position parsePositionString(String positionInput){
         String[] positionArgs = positionInput.split(" ");
         if(positionInput.isBlank() || positionInput.isEmpty()){
-            throw new RuntimeException("Invalid input for position");
+            throw new IllegalArgumentException("Invalid input for position");
         }
         if(positionArgs.length != 3){
             throw new IllegalArgumentException("Incorrect number of inputs for position");
