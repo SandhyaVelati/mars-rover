@@ -49,20 +49,32 @@ public class Rover implements Movable<CompassDirectionEnum,InstructionEnum, Plat
         if (this.position.getDirectionFacing() == CompassDirectionEnum.N){
             //y positive ahead
             Position calcPos = new Position(this.position.getX(), this.position.getY() + 1, this.position.getDirectionFacing());
-            this.setPosition(calcPos);
+            if(plateau.isWithinBoundary(calcPos)){
+                this.setPosition(calcPos);
+            }
+            else stop();
+
         }
         if (this.position.getDirectionFacing() == CompassDirectionEnum.E){
             //x positive ahead
-            this.setPosition(new Position(this.position.getX()+1, this.position.getY() , this.position.getDirectionFacing()));
+            Position calcPos = new Position(this.position.getX()+1, this.position.getY() , this.position.getDirectionFacing());
+            if(plateau.isWithinBoundary(calcPos)){
+                this.setPosition(calcPos);
+            }       else stop();
         }
         if (this.position.getDirectionFacing() == CompassDirectionEnum.S){
             //y negative ahead
-            this.setPosition(new Position(this.position.getX(), this.position.getY() - 1, this.position.getDirectionFacing()));
+            Position calcPos = new Position(this.position.getX(), this.position.getY() - 1, this.position.getDirectionFacing());
+            if(plateau.isWithinBoundary(calcPos)){
+                this.setPosition(calcPos);
+            }   else stop();
         }
         if (this.position.getDirectionFacing() == CompassDirectionEnum.W){
             //x negative ahead
-            this.setPosition(new Position(this.position.getX()-1, this.position.getY(), this.position.getDirectionFacing()));
-        }
+            Position calcPos = new Position(this.position.getX()-1, this.position.getY(), this.position.getDirectionFacing());
+            if(plateau.isWithinBoundary(calcPos)){
+                this.setPosition(calcPos);
+            } else stop();        }
     }
 
 
