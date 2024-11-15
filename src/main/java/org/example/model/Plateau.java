@@ -1,5 +1,6 @@
 package org.example.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -8,7 +9,7 @@ public class Plateau {
     private static Plateau plateau;
     private int maxX;
     private int maxY;
-    private  final HashSet<Rover> rovers = new HashSet<>();
+    private  final List<Rover> rovers = new ArrayList<>();
     private Plateau(int maxX, int maxY) {
         this.maxX = maxX;
         this.maxY = maxY;
@@ -25,7 +26,7 @@ public class Plateau {
         return plateau;
     }
 
-    public HashSet<Rover> getRovers(){
+    public List<Rover> getRovers(){
         return rovers;
     }
     public int getMaxX() {
@@ -51,7 +52,7 @@ public class Plateau {
 
     //todo: avoid collision by checking for position
     public boolean isOccupied(Position position){
-        return rovers.stream().anyMatch(rover -> rover.getPosition().equals(position));
+        return rovers.stream().anyMatch(rover ->rover.getPosition().equals(position));
     }
 
     //todo: land a rover on one of the co ordinate

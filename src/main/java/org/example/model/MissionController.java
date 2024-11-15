@@ -5,20 +5,20 @@ import java.util.List;
 public class MissionController {
     private final Plateau plateau;
 
-    public MissionController(int maxX, int maxY) {
-        this.plateau = Plateau.getInstance(maxX, maxY);
+    public MissionController(Plateau plateau) {
+        this.plateau = plateau;
     }
     public void deployRoverOnPlateau(Rover rover){
         plateau.addRover(rover);
     }
-    public void driveRoverOnPlateau(Rover rover, List<InstructionEnum> instructions,Plateau plateau){
-        rover.move(instructions, plateau);
+    public void driveRoverOnPlateau(Rover rover, List<InstructionEnum> instructions){
+        rover.move(instructions, this.plateau);
     }
     public void recallRover(Rover rover) {
         plateau.removeRoverFromPlateau(rover);
     }
     public void listRovers() {
-        plateau.getRovers().forEach(rover -> System.out.println(rover.getRoverId() + " at " + rover.getPosition()));
+        plateau.getRovers().forEach(rover -> System.out.println("Rover Id:  "+rover.getRoverId() + "  at " + rover.getPosition()));
     }
 
 }

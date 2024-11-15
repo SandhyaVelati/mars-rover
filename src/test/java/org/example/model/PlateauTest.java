@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,7 +30,7 @@ class PlateauTest {
         Rover rover2 = new Rover(new Position(3, 2, CompassDirectionEnum.E));
         singleTonPlateau.addRover(rover1);
         singleTonPlateau.addRover(rover2);
-        HashSet<Rover> rovers = singleTonPlateau.getRovers();
+        List<Rover> rovers = singleTonPlateau.getRovers();
         assertAll("check rover ids",
         ()-> assertTrue(rovers.contains(rover1)),
                 ()->assertTrue(rovers.contains(rover2)));
@@ -62,7 +63,7 @@ class PlateauTest {
     void addRoverTest(){
         Rover rover4 = new Rover(new Position(3, 5, CompassDirectionEnum.S));
         singleTonPlateau.addRover(rover4);
-        HashSet<Rover> rovers = singleTonPlateau.getRovers();
+        List<Rover> rovers = singleTonPlateau.getRovers();
         assertTrue(rovers.contains(rover4));
         assertThrows(IllegalArgumentException.class,()->singleTonPlateau.addRover(null));
     }
