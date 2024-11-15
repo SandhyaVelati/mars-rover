@@ -1,12 +1,16 @@
 package org.example.model;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 public class Rover implements Movable<CompassDirectionEnum,InstructionEnum>{
 
     private Position position;
+    private final String roverId;
 
     public Rover(Position position) {
+        this.roverId = UUID.randomUUID().toString();
         this.position = position;
     }
 
@@ -16,6 +20,10 @@ public class Rover implements Movable<CompassDirectionEnum,InstructionEnum>{
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public String getRoverId() {
+        return roverId;
     }
 
     @Override
@@ -73,5 +81,17 @@ public class Rover implements Movable<CompassDirectionEnum,InstructionEnum>{
     public Position stop() {
         System.out.println("stopping rover from moving any further");
         return this.position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rover rover = (Rover) o;
+        return Objects.equals(roverId, rover.roverId);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(roverId);
     }
 }
