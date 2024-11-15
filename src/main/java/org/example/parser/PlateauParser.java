@@ -15,6 +15,9 @@ public class PlateauParser {
         }
         int maxX = Integer.parseInt(PlateauLengthAndWidth[0]);
         int maxY = Integer.parseInt(PlateauLengthAndWidth[1]);
-        return new Plateau(maxX,maxY);
+        if(maxX <0 || maxY <0){
+            throw new IllegalArgumentException("Plateau size cannot be a negative integer");
+        }
+        return Plateau.getInstance(maxX,maxY);  //Todo: make this singleton Return
     }
 }

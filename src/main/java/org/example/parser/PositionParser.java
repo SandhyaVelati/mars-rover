@@ -16,6 +16,9 @@ public class PositionParser {
         }
         int xPoint = Integer.parseInt(positionArgs[0]);
         int yPoint = Integer.parseInt(positionArgs[1]);
+        if(xPoint <0 || yPoint <0){
+            throw new IllegalArgumentException("initial landing co-ordinates cannot be negative integers");
+        }
         CompassDirectionEnum currentDirection = CompassDirectionEnum.valueOf(positionArgs[2]);
         return new Position(xPoint,yPoint, currentDirection);
     }
