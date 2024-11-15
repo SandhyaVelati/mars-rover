@@ -26,7 +26,6 @@ public class Rover implements Movable<CompassDirectionEnum,InstructionEnum>{
                 System.out.println("position before move:"+ this.position.toString());
                 moveToNewXYPoints();
                 System.out.println("position after move:"+ this.position.toString());
-
             }
             else {
                 //todo: turn around

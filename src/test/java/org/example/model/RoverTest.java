@@ -105,7 +105,7 @@ class RoverTest {
 
     @Test
     @DisplayName("rover executes the list of instructions and returns the final position")
-    public void testSetOfMoveS() {
+    public void testSetOfMove() {
         Position initialPosition = new Position(2, 2, CompassDirectionEnum.N);
         Rover rover = new Rover(initialPosition);
         //MLMR 2,3->2,3,W->1,3,W->1,4,N
@@ -116,12 +116,31 @@ class RoverTest {
     }
 
     @Test
+    @DisplayName("rover throws exception when the list of instructions with one Invalid instruction is passed")
+    public void testSetOfMovesWithInvalidMove() {
+        Position initialPosition = new Position(2, 2, CompassDirectionEnum.N);
+        Rover rover = new Rover(initialPosition);
+        //MLMR 2,3->2,3,W->1,3,W->1,4,N
+        assertThrows(IllegalArgumentException.class,
+                ()-> rover.move(List.of(InstructionEnum.M, InstructionEnum.L, InstructionEnum.M, InstructionEnum.R, InstructionEnum.valueOf("P"))));
+    }
+
+    @Test
     @DisplayName("rover throws exception when invalid turn command is passed")
     public void testInvalidTurnInstruction() {
         Position initialPosition = new Position(0, 0, CompassDirectionEnum.N);
         Rover rover = new Rover(initialPosition);
         assertThrows(IllegalArgumentException.class, () -> rover.turn(InstructionEnum.valueOf("X")));
     }
+
+    @Test
+    @DisplayName("rover throws exception when invalid move command is passed")
+    public void testInvalidMoveInstruction() {
+        Position initialPosition = new Position(0, 0, CompassDirectionEnum.N);
+        Rover rover = new Rover(initialPosition);
+        assertThrows(IllegalArgumentException.class, () -> rover.move(List.of(InstructionEnum.valueOf("P"))));
+    }
+
     @Test
     @DisplayName("rover position does not change, when stop is called on rover")
     public void testStopDoesNotMove() {
