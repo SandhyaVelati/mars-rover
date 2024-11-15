@@ -6,16 +6,6 @@ public enum CompassDirectionEnum {
     S,
     W;
 
-//    public static String validateDirection(char directionFacing){
-//        return switch (directionFacing) {
-//            case 'N' -> "North";
-//            case 'S' -> "South";
-//            case 'W' -> "West";
-//            case 'E' -> "East";
-//            default -> throw new IllegalArgumentException("invalid value for direction" + directionFacing);
-//        };
-//    }
-
     //rotate clockwise
     public CompassDirectionEnum turnRight() {
         return switch (this) {
