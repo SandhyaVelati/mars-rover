@@ -63,9 +63,10 @@ public class Rover implements Movable<CompassDirectionEnum,InstructionEnum>{
        if(instruction== InstructionEnum.L){
            this.setPosition(new Position(this.position.getX(),this.position.getY(),this.position.getDirectionFacing().turnLeft()));
        }
-        if(instruction== InstructionEnum.R){
+       else if(instruction== InstructionEnum.R){
             this.setPosition(new Position(this.position.getX(),this.position.getY(),this.position.getDirectionFacing().turnRight()));
         }
+       else throw new IllegalArgumentException("Invalid Rotation Instruction, turn Rover command could not be executed");
         return this.position;
     }
 
