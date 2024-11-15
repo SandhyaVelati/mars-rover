@@ -1,5 +1,6 @@
 package org.example.model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,21 +10,18 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RoverTest {
-    @Test
-    void getPosition() {
+    private Plateau plateau;
+    @BeforeEach
+    void setUp(){
+        plateau= Plateau.getInstance(5,5);
     }
-
-    @Test
-    void setPosition() {
-    }
-
 
     @Test
     @DisplayName("moves rover in the positive direction of Y axis, when rover is facing North")
     public void testMoveFurtherNorth() {
         Position initialPosition = new Position(1, 0, CompassDirectionEnum.N);
         Rover rover = new Rover(initialPosition);
-        rover.move(List.of(InstructionEnum.M));
+        rover.move(List.of(InstructionEnum.M), plateau);
         Position newPosition = rover.getPosition();
         assertAll("verifying new position of the rover, only Y point should be 1 after moving",
                 ()->assertEquals(1, newPosition.getX()),
@@ -37,7 +35,7 @@ class RoverTest {
     public void testMoveFurtherWest() {
         Position initialPosition = new Position(1, 2, CompassDirectionEnum.W);
         Rover rover = new Rover(initialPosition);
-        Position newPosition = rover.move(List.of(InstructionEnum.M));
+        Position newPosition = rover.move(List.of(InstructionEnum.M), plateau);
         assertAll("verifying new position of the rover, only Y point should be 1 after moving",
                 ()->assertEquals(0, newPosition.getX()),
                 ()-> assertEquals(2, newPosition.getY()),
@@ -50,7 +48,7 @@ class RoverTest {
     public void testMoveSouth() {
         Position initialPosition = new Position(2, 2, CompassDirectionEnum.S);
         Rover rover = new Rover(initialPosition);
-        rover.move(List.of(InstructionEnum.M));  // Move South
+        rover.move(List.of(InstructionEnum.M),plateau);  // Move South
         Position newPosition = rover.getPosition();
         assertAll("verifying new position of the rover, only Y point should be less by 1 after moving",
                 ()->assertEquals(2, newPosition.getX()),
@@ -77,7 +75,7 @@ class RoverTest {
     void moveToNewXYPoints() {
         Position initPos = new Position(0,0,CompassDirectionEnum.N);
         Rover rover = new Rover(initPos);
-        rover.moveToNewXYPoints();
+        rover.moveToNewXYPoints(plateau);
         assertEquals(1, rover.getPosition().getY());
     }
     @Test
@@ -109,7 +107,7 @@ class RoverTest {
         Position initialPosition = new Position(2, 2, CompassDirectionEnum.N);
         Rover rover = new Rover(initialPosition);
         //MLMR 2,3->2,3,W->1,3,W->1,4,N
-        Position newPosition = rover.move(List.of(InstructionEnum.M, InstructionEnum.L, InstructionEnum.M, InstructionEnum.R));
+        Position newPosition = rover.move(List.of(InstructionEnum.M, InstructionEnum.L, InstructionEnum.M, InstructionEnum.R), plateau);
         assertEquals(1, newPosition.getX());
         assertEquals(3, newPosition.getY());
         assertEquals(CompassDirectionEnum.N, newPosition.getDirectionFacing());
@@ -122,7 +120,7 @@ class RoverTest {
         Rover rover = new Rover(initialPosition);
         //MLMR 2,3->2,3,W->1,3,W->1,4,N
         assertThrows(IllegalArgumentException.class,
-                ()-> rover.move(List.of(InstructionEnum.M, InstructionEnum.L, InstructionEnum.M, InstructionEnum.R, InstructionEnum.valueOf("P"))));
+                ()-> rover.move(List.of(InstructionEnum.M, InstructionEnum.L, InstructionEnum.M, InstructionEnum.R, InstructionEnum.valueOf("P")),plateau));
     }
 
     @Test
@@ -137,7 +135,7 @@ class RoverTest {
     public void testInvalidMoveInstruction() {
         Position initialPosition = new Position(0, 0, CompassDirectionEnum.N);
         Rover rover = new Rover(initialPosition);
-        assertThrows(IllegalArgumentException.class, () -> rover.move(List.of(InstructionEnum.valueOf("P"))));
+        assertThrows(IllegalArgumentException.class, () -> rover.move(List.of(InstructionEnum.valueOf("P")),plateau));
     }
     @Test
     @DisplayName("rover position does not change, when stop is called on rover")

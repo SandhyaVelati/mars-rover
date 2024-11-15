@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Rover implements Movable<CompassDirectionEnum,InstructionEnum>{
+public class Rover implements Movable<CompassDirectionEnum,InstructionEnum, Plateau>{
 
     private Position position;
     private final String roverId;
@@ -27,12 +27,12 @@ public class Rover implements Movable<CompassDirectionEnum,InstructionEnum>{
     }
 
     @Override
-    public Position move(List<InstructionEnum> instructions) {
+    public Position move(List<InstructionEnum> instructions, Plateau plateau) {
         for(InstructionEnum instruction: instructions){
             if(instruction == InstructionEnum.M){
                //todo: move ahead
                 System.out.println("position before move:"+ this.position.toString());
-                moveToNewXYPoints();
+                moveToNewXYPoints(plateau);
                 System.out.println("position after move:"+ this.position.toString());
             }
             else {
@@ -45,10 +45,11 @@ public class Rover implements Movable<CompassDirectionEnum,InstructionEnum>{
         return this.position;
     }
 
-    public void moveToNewXYPoints(){
+    public void moveToNewXYPoints(Plateau plateau){
         if (this.position.getDirectionFacing() == CompassDirectionEnum.N){
             //y positive ahead
-            this.setPosition(new Position(this.position.getX(), this.position.getY() + 1, this.position.getDirectionFacing()));
+            Position calcPos = new Position(this.position.getX(), this.position.getY() + 1, this.position.getDirectionFacing());
+            this.setPosition(calcPos);
         }
         if (this.position.getDirectionFacing() == CompassDirectionEnum.E){
             //x positive ahead
