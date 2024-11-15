@@ -49,7 +49,7 @@ class PositionParserTest {
         assertAll("check position instance",
                 ()-> assertEquals(0, position.getX()),
                 ()->assertEquals(0, position.getY()),
-                ()->assertEquals(CompassDirectionEnum.E, position.getFacing())
+                ()->assertEquals(CompassDirectionEnum.E, position.getDirectionFacing())
         );
     }
 

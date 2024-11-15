@@ -3,12 +3,12 @@ package org.example.model;
 public class Position {
     private int x;
     private int y;
-    private CompassDirectionEnum facing;
+    private CompassDirectionEnum directionFacing;
 
     public Position(int x, int y, CompassDirectionEnum facing) {
         this.x = x;
         this.y = y;
-        this.facing = facing;
+        this.directionFacing = facing;
     }
 
     public int getX() {
@@ -27,12 +27,12 @@ public class Position {
         this.y = y;
     }
 
-    public CompassDirectionEnum getFacing() {
-        return facing;
+    public CompassDirectionEnum getDirectionFacing() {
+        return directionFacing;
     }
 
-    public void setFacing(CompassDirectionEnum facing) {
-        this.facing = facing;
+    public void setDirectionFacing(CompassDirectionEnum directionFacing) {
+        this.directionFacing = directionFacing;
     }
 
 
@@ -41,7 +41,7 @@ public class Position {
         return "Position{" +
                 "x=" + x +
                 ", y=" + y +
-                ", facing=" + facing +
+                ", facing=" + directionFacing +
                 '}';
     }
 }

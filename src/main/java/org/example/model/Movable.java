@@ -1,5 +1,7 @@
 package org.example.model;
 
+import java.util.List;
+
 public interface Movable<T extends CompassDirectionEnum,U extends InstructionEnum> {
 
     //todo: check if position can be made generic too
@@ -8,7 +10,7 @@ public interface Movable<T extends CompassDirectionEnum,U extends InstructionEnu
      * moves along the instructed co-ordinates
      * returns position once the turn is complete
      * */
-    public Position move(U u);
+    public Position move(List<U> u);
 
     /**
      * turns in the direction of the instruction
