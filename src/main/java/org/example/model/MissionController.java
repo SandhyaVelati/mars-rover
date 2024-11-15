@@ -11,8 +11,9 @@ public class MissionController {
     public void deployRoverOnPlateau(Rover rover){
         plateau.addRover(rover);
     }
-    public void driveRoverOnPlateau(Rover rover, List<InstructionEnum> instructions){
-        rover.move(instructions, this.plateau);
+    public void driveRoverOnPlateau(int roverIndex,List<InstructionEnum> instructions){
+
+        plateau.getRovers().get(roverIndex-1).move(instructions, this.plateau);
     }
     public void recallRover(Rover rover) {
         plateau.removeRoverFromPlateau(rover);
