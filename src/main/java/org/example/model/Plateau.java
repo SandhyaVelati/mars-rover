@@ -1,12 +1,13 @@
 package org.example.model;
 
-public class PlateauSize {
+public class Plateau {
     private int maxX;
     private int maxY;
-    public PlateauSize() {
+
+    public Plateau() {
 
     }
-    public PlateauSize(int maxX, int maxY) {
+    public Plateau(int maxX, int maxY) {
         this.maxX = maxX;
         this.maxY = maxY;
     }

@@ -132,7 +132,6 @@ class RoverTest {
         Rover rover = new Rover(initialPosition);
         assertThrows(IllegalArgumentException.class, () -> rover.turn(InstructionEnum.valueOf("X")));
     }
-
     @Test
     @DisplayName("rover throws exception when invalid move command is passed")
     public void testInvalidMoveInstruction() {
@@ -140,7 +139,6 @@ class RoverTest {
         Rover rover = new Rover(initialPosition);
         assertThrows(IllegalArgumentException.class, () -> rover.move(List.of(InstructionEnum.valueOf("P"))));
     }
-
     @Test
     @DisplayName("rover position does not change, when stop is called on rover")
     public void testStopDoesNotMove() {

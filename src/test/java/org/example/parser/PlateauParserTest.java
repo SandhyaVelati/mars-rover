@@ -1,14 +1,14 @@
 package org.example.parser;
 
-import org.example.model.PlateauSize;
+import org.example.model.Plateau;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PlateauSizeParserTest {
+class PlateauParserTest {
 
-    private final PlateauSizeParser plateauSizeParser = new PlateauSizeParser();
+    private final PlateauParser plateauSizeParser = new PlateauParser();
     @Test
     @DisplayName("throws NumberFormatException, when invalid input arguments are passed")
     void testNonNumberInputs() {
@@ -29,7 +29,7 @@ class PlateauSizeParserTest {
     @Test
     @DisplayName("returns PlateauSize instance with length and width, when valid and sufficient arguments are passed")
     void testValidInputs() {
-        PlateauSize plateauSize = plateauSizeParser.parsePlateauSize("5 5");
+        Plateau plateauSize = plateauSizeParser.parsePlateauSize("5 5");
         assertAll("verify valid dimensions ",
                 ()->assertEquals(5,plateauSize.getMaxX()),
                 ()->assertEquals(5,plateauSize.getMaxY())

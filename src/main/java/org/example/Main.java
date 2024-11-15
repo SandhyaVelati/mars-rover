@@ -1,9 +1,7 @@
 package org.example;
 
 
-import org.example.parser.InstructionParser;
-import org.example.parser.PlateauSizeParser;
-import org.example.parser.PositionParser;
+import org.example.parser.PlateauParser;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +11,7 @@ public class Main {
         String positionInput = "1 2 N";
         String instructionInput = "LMLMRMLLM";
 //
-        PlateauSizeParser plateauSizeParser = new PlateauSizeParser();
+        PlateauParser plateauSizeParser = new PlateauParser();
         //PositionParser positionParser = new PositionParser();
         //InstructionParser instructionParser = new InstructionParser();
 //

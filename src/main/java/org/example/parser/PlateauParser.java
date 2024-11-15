@@ -1,11 +1,11 @@
 package org.example.parser;
 
 
-import org.example.model.PlateauSize;
+import org.example.model.Plateau;
 
-public class PlateauSizeParser {
+public class PlateauParser {
     //convert plateau size dimensions input to PlateauSize Type : 5 5
-    public PlateauSize parsePlateauSize(String plateauSizeInput){
+    public Plateau parsePlateauSize(String plateauSizeInput){
         if(plateauSizeInput == null || plateauSizeInput.isBlank() || plateauSizeInput.isEmpty()){
             throw new IllegalArgumentException("plateau size cannot be empty");
         }
@@ -15,6 +15,6 @@ public class PlateauSizeParser {
         }
         int maxX = Integer.parseInt(PlateauLengthAndWidth[0]);
         int maxY = Integer.parseInt(PlateauLengthAndWidth[1]);
-        return new PlateauSize(maxX,maxY);
+        return new Plateau(maxX,maxY);
     }
 }
