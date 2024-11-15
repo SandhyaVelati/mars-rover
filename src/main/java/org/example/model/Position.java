@@ -1,5 +1,7 @@
 package org.example.model;
 
+import java.util.Objects;
+
 public class Position {
     private int x;
     private int y;
@@ -30,11 +32,9 @@ public class Position {
     public CompassDirectionEnum getDirectionFacing() {
         return directionFacing;
     }
-
     public void setDirectionFacing(CompassDirectionEnum directionFacing) {
         this.directionFacing = directionFacing;
     }
-
 
     @Override
     public String toString() {
@@ -44,4 +44,11 @@ public class Position {
                 ", facing=" + directionFacing +
                 '}';
     }
+
+    public boolean equals(Position inComingPosition) {
+        if (this == inComingPosition) return true;
+        if (inComingPosition == null || getClass() != inComingPosition.getClass()) return false;
+        return x == inComingPosition.x && y == inComingPosition.y && directionFacing == inComingPosition.directionFacing;
+    }
+
 }
