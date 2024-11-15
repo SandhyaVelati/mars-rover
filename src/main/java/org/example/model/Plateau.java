@@ -9,7 +9,6 @@ public class Plateau {
     private int maxX;
     private int maxY;
     private  final HashSet<Rover> rovers = new HashSet<>();
-
     private Plateau(int maxX, int maxY) {
         this.maxX = maxX;
         this.maxY = maxY;
@@ -33,18 +32,9 @@ public class Plateau {
         return maxX;
     }
 
-//    public void setMaxX(int maxX) {
-//        this.maxX = maxX;
-//    }
-
     public int getMaxY() {
         return maxY;
     }
-
-//    public void setMaxY(int maxY) {
-//        this.maxY = maxY;
-//    }
-
 
     @Override
     public String toString() {
@@ -56,7 +46,7 @@ public class Plateau {
 
     //todo: check if rover position is going out of bounds of plateau
     public boolean isWithinBoundary(Position position){
-        return (position.getX() >= 0 && position.getX() <= maxX) && (position.getY() > 0 && position.getY() < maxY);
+        return (position.getX() >= 0 && position.getX() <= maxX) && (position.getY() >= 0 && position.getY() <= maxY);
     }
 
     //todo: avoid collision by checking for position
