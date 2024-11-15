@@ -47,12 +47,15 @@ public class Plateau {
 
     //todo: check if rover position is going out of bounds of plateau
     public boolean isWithinBoundary(Position position){
-        return (position.getX() >= 0 && position.getX() <= maxX) && (position.getY() >= 0 && position.getY() <= maxY);
+        return ((position.getX() >= 0 && position.getX() <= maxX) && (position.getY() >= 0 && position.getY() <= maxY));
     }
 
     //todo: avoid collision by checking for position
     public boolean isOccupied(Position position){
-        return rovers.stream().anyMatch(rover ->rover.getPosition().equals(position));
+        boolean isOccupied =  rovers.stream().anyMatch(rover ->rover.getPosition().equals(position));
+        System.out.println(isOccupied);
+        return isOccupied;
+        //return rovers.stream().anyMatch(rover ->(rover.getPosition().getX()==position.getX() && rover.getPosition().getY() == position.getY()));
     }
 
     //todo: land a rover on one of the co ordinate
@@ -63,6 +66,9 @@ public class Plateau {
         if(isWithinBoundary(rover.getPosition()) && !isOccupied(rover.getPosition())){
             rovers.add(rover);
             System.out.println("rover landed on plateau");
+        }
+        else {
+            System.out.println("Collision detected!!!!!! Cannot deploy Rover here");
         }
     }
 
